@@ -1,0 +1,13 @@
+<div mat-dialog-title>{{title}}</div>
+<!-- button(type="button", class="close mdi mdi-close", aria-label="Close", (click)="closeModal()") -->
+
+<mat-divider></mat-divider>
+<div mat-dialog-content class="mat-dialog-content">
+  <ng-content></ng-content>
+</div>
+
+<mat-divider></mat-divider>
+<div mat-dialog-actions *ngIf="showActions" class="dialog-actions">
+  <button mat-raised-button color="primary" [disabled]="!isFormValid()" (click)="save()">Save</button>
+  <button mat-raised-button (click)="closeModal()">Cancel</button>
+</div>

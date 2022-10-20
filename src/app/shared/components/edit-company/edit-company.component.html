@@ -1,0 +1,54 @@
+<app-modal title="Edit Company" [fg]="fg" [showActions]="true" (saveClicked)="save()">
+    <form action="" [formGroup]="fg" class="actions">
+        <div class="company_container">
+            <div>
+                <div>
+                    <am-input label="Code" [fg]="fg" control="code" [required]="true"></am-input>
+                </div>
+                <div>
+                    <am-input label="Name" [fg]="fg" control="name" [required]="true"></am-input>
+                </div>
+                <div>
+                    <am-input label="Street" [fg]="fg" control="street"></am-input>
+                </div>
+                <div class="company_container__city-info">
+                    <div>
+                        <am-input label="City" [fg]="fg" control="city"></am-input>
+                    </div>
+                    <div>
+                        <am-select label="Province" [fg]="fg" control="state" [values]="provinceValues"></am-select>
+                    </div>
+                    <div>
+                        <am-input label="Postal Code" [fg]="fg" control="zip"></am-input>
+                    </div>
+                </div>
+                <div>
+                    <am-select label="Country" [fg]="fg" control="country" [values]="countryValues"></am-select>
+                </div>
+                <div>
+                    <am-input label="Company Slogan" [fg]="fg" control="rmlHeader1"></am-input>
+                </div>
+                <div>
+                    <am-input type="url" label="Web Site" [fg]="fg" control="website"></am-input>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <am-input type="tel" label="Phone" [fg]="fg" control="phone"></am-input>
+                </div>
+                <div>
+                    <am-input type="tel" label="Fax" [fg]="fg" control="fax"></am-input>
+                </div>
+                <div>
+                    <am-input type="email" label="Email" [fg]="fg" control="email"></am-input>
+                </div>
+                <div>
+                    <am-input label="NIF" [fg]="fg" control="vat"></am-input>
+                </div>
+                <div>
+                    <am-input label="Company Registration" [fg]="fg" control="companyRegistry"></am-input>
+                </div>
+            </div>
+        </div>
+    </form>
+</app-modal>

@@ -1,0 +1,212 @@
+<form role="form" [formGroup]="fg" >
+    <div class="supplier-owner">
+        <div class="supplier-owner__container">
+            <div class="supplier-owner__left-panel">
+                <div>
+                    <div class="pr-2 w-100">
+                        <am-select class="w-100" label="Supplier" [fg]="fg" control="supplier" [values]="supplierValues" [canEdit]="true" [disabled]="isDropOff || !freeDebt" (searchValue)="filterSupplier($event)" (editElement)="editSupplier($event)"></am-select>
+                    </div>
+                    <div class="pr-2 w-100">
+                        <am-select class="w-100" label="Preferred language" [fg]="fg" control="preferredLanguage" [values]="languageValues" [disabled]="isDropOff || !freeDebt" (searchValue)="filterLanguage($event)"></am-select>
+                    </div>
+                </div>
+                <div>
+                    <div class="pr-2 w-100">
+                        <am-select class="w-100" label="Fiscal position" [fg]="fg" control="fiscalPosition" [values]="fiscalPositionValues" [disabled]="isDropOff || !freeDebt" (searchValue)="filterFiscalPosition($event)"></am-select>
+                    </div>
+                    <div class="pr-2 w-100">
+                        <am-select class="w-100" label="Contact Source" [fg]="fg" control="contactSource" [values]="contactValues" [disabled]="isDropOff || !freeDebt" (searchValue)="filterContact($event)"></am-select>
+                    </div>
+                </div>
+                <div>
+                    <div class="w-100 pr-2">
+                        <am-textarea class="w-100" label="Address" [fg]="fg" control="supplierAddress" placeholder="Number and street" [disabled]="isDropOff || !freeDebt"></am-textarea>
+                    </div>
+                </div>            
+                <div class="supplier-owner__city-info">
+                    <div>
+                        <div class="pr-2 w-100">
+                            <am-select class="w-100" label="City" [fg]="fg" control="supplierCity" [values]="supplierCityValues" [disabled]="isDropOff || !freeDebt" (searchValue)="filterSupplierCity($event)"></am-select>
+                        </div>
+                        <div class="pr-2 w-100">
+                            <am-select class="w-100" label="Province" [fg]="fg" control="supplierProvince" [values]="supplierProvinceValues" [disabled]="isDropOff || !freeDebt" (searchValue)="filterSupplierProvince($event)"></am-select>
+                        </div>
+                    </div>
+                    <div class="pr-2 w-100">
+                        <am-input class="w-100" label="Postal Code" [fg]="fg" control="supplierPostalCode" mask="AAAAAA" placeholder="Postal Code" [disabled]="isDropOff || !freeDebt"></am-input>
+                    </div>
+                </div>
+                <div>
+                    <div class="pr-2 w-100">
+                        <am-select class="w-100" label="Country" [fg]="fg" control="supplierCountry" [values]="supplierCountryValues" [disabled]="isDropOff || !freeDebt" (searchValue)="filterSupplierCountry($event)"></am-select>
+                    </div>
+                </div>
+                <div>
+                    <div class="pr-2 w-100">
+                        <am-input class="w-100" label="Phone" [fg]="fg" control="supplierPhone" mask="(000) 000-0000" [showMask]="true" placeholder="Phone" [disabled]="isDropOff || !freeDebt"></am-input>
+                    </div>
+                    <div class="pr-2 w-100">
+                        <am-input class="w-100" label="Cellulaire" [fg]="fg" control="supplierCellulaire" mask="(000) 000-0000" [showMask]="true" placeholder="Phone" [disabled]="isDropOff || !freeDebt"></am-input>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-3 flex-1">
+                <div>
+                    <section class="section-conf">
+                        <am-checkbox class="section-margin" 
+                            [fg]="fg"
+                            control="isSupplierOwner"
+                            label="Is the supplier the owner?"
+                            [disabled]="!freeDebt">
+                        </am-checkbox>
+                    </section>
+                </div>
+                <div class="supplier-owner__right-panel" *ngIf="!supplierIsOwner">
+                    <div>
+                        <div class="pr-2 w-100">
+                            <am-input class="w-100" label="Owner" [fg]="fg" control="owner" placeholder="Owner" [disabled]="!freeDebt"></am-input>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="w-100 pr-2">
+                            <am-textarea class="w-100" label="Address" [fg]="fg" control="ownerAddress" placeholder="Number and street" [disabled]="!freeDebt"></am-textarea>
+                        </div>
+                    </div>            
+                    <div class="supplier-owner__city-info">
+                        <div>
+                            <div class="pr-2 w-100">
+                                <am-select class="w-100" label="City" [fg]="fg" control="ownerCity" [values]="ownerCityValues" [disabled]="!freeDebt" (searchValue)="filterOwnerCity($event)"></am-select>
+                            </div>
+                            <div class="pr-2 w-100">
+                                <am-select class="w-100" label="Province" [fg]="fg" control="ownerProvince" [values]="ownerProvinceValues" [disabled]="!freeDebt" (searchValue)="filterOwnerProvince($event)"></am-select>
+                            </div>
+                        </div>
+                        <div class="pr-2 w-100">
+                            <am-input class="w-100" label="Postal Code" [fg]="fg" control="ownerPostalCode" placeholder="Owner" [disabled]="!freeDebt"></am-input>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="pr-2 w-100">
+                            <am-select class="w-100" label="Country" [fg]="fg" control="ownerCountry" [values]="ownerCountryValues" [disabled]="!freeDebt" (searchValue)="filterOwnerCountry($event)"></am-select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="pr-2 w-100">
+                            <am-input class="w-100" label="Phone" [fg]="fg" control="ownerPhone" mask="(000) 000-0000" [showMask]="true" placeholder="Phone" [disabled]="!freeDebt"></am-input>
+                        </div>
+                        <div class="pr-2 w-100">
+                            <am-input class="w-100" label="Cellulaire" [fg]="fg" control="ownerCellulaire" mask="(000) 000-0000" [showMask]="true" placeholder="Phone" [disabled]="!freeDebt"></am-input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isCharity" class="supplier-owner">
+        <div class="pt-3">
+            <div>
+                <section class="section-conf">
+                    <am-checkbox class="section-margin" 
+                        label="Is the owner then donor?"
+                        [fg]="fg"
+                        control="isOwnerDonor"
+                        [disabled]="!freeDebt">
+                    </am-checkbox>
+                </section>
+            </div>
+        </div>
+        <div class="supplier-owner__container">
+            <div class="supplier-owner__left-panel" *ngIf="!ownerIsDonor">
+                <div>
+                    <div class="pr-2 w-100">
+                        <am-input class="w-100" label="Donor" [fg]="fg" control="donor" placeholder="Donor" [disabled]="!freeDebt"></am-input>
+                    </div>
+                </div>
+                <div>
+                    <div class="w-100 pr-2">
+                        <am-textarea class="w-100" label="Address" [fg]="fg" control="donorAddress" placeholder="Number and street" [disabled]="!freeDebt"></am-textarea>
+                    </div>
+                </div>            
+                <div class="supplier-owner__city-info">
+                    <div>
+                        <div class="pr-2 w-100">
+                            <am-select class="w-100" label="City" [fg]="fg" control="donorCity" [values]="donorCityValues" [disabled]="!freeDebt" (searchValue)="filterDonorCity($event)"></am-select>
+                        </div>
+                        <div class="pr-2 w-100">
+                            <am-select class="w-100" label="Province" [fg]="fg" control="donorProvince" [values]="donorProvinceValues" [disabled]="!freeDebt" (searchValue)="filterDonorProvince($event)"></am-select>
+                        </div>
+                    </div>
+                    <div class="pr-2 w-100">
+                        <am-input class="w-100" label="Postal Code" [fg]="fg" control="donorPostalCode" placeholder="Postal Code" [disabled]="!freeDebt"></am-input>
+                    </div>
+                </div>
+                <div>
+                    <div class="pr-2 w-100">
+                        <am-select class="w-100" label="Country" [fg]="fg" control="donorCountry" [values]="donorCountryValues" [disabled]="!freeDebt" (searchValue)="filterDonorCountry($event)"></am-select>
+                    </div>
+                </div>
+                <div>
+                    <div class="pr-2 w-100">
+                        <am-input class="w-100" type="email" label="Email" [fg]="fg" control="donorEmail" placeholder="Email" [disabled]="!freeDebt"></am-input>
+                    </div>
+                </div>
+                <div>
+                    <div class="pr-2 w-100">
+                        <am-input class="w-100" label="Phone" [fg]="fg" control="donorPhone" mask="(000) 000-0000" [showMask]="true" placeholder="Phone" [disabled]="!freeDebt"></am-input>
+                    </div>
+                    <div class="pr-2 w-100">
+                        <am-input class="w-100" label="Cellulaire" [fg]="fg" control="donorCellulaire" mask="(000) 000-0000" [showMask]="true" placeholder="Cellulaire" [disabled]="!freeDebt"></am-input>
+                    </div>
+                </div>
+            </div> 
+            <div class="supplier-owner__right-panel" *ngIf="!ownerIsDonor">
+                <div class="w-100">
+                    <div class="pt-2 w-100">
+                        <am-input class="w-100" label="Donor Driver License" [fg]="fg" control="donorDriverLicense" placeholder="Email" [disabled]="!freeDebt"></am-input>
+                    </div>
+                </div>
+                <div>
+                    <div class="w-100">
+                        <am-input class="w-100" label="Reference" [fg]="fg" control="donorReference" placeholder="Reference" [disabled]="!freeDebt"></am-input>
+                    </div>
+                </div>
+                <div>
+                    <div class="w-100">
+                        <am-select class="w-100" label="Correspondance" [fg]="fg" control="donorLanguage" [values]="donorLanguageValues" [disabled]="!freeDebt" (searchValue)="filterDonorLanguage($event)"></am-select>
+                    </div>
+                </div>
+                <div class="flex">
+                    <section class="w-100 section-conf">
+                        <am-checkbox 
+                            label="Tax Credit By Email"
+                            [fg]="fg"
+                            control="donorTaxCreditByEmail"
+                            [disabled]="!freeDebt">
+                        </am-checkbox>
+                    </section>
+                    <section class="w-100 section-conf">
+                        <am-checkbox 
+                            label="Commemorative Card"
+                            [fg]="fg"
+                            control="donorCommemorativeCard"
+                            [disabled]="!freeDebt">
+                        </am-checkbox>
+                    </section>
+                </div>
+                <div>
+                    <div class="w-100">
+                        <am-input class="w-100" label="Card In Memory Of" [fg]="fg" control="donorCardInMemoryOf" placeholder="Card In Memory Of" [disabled]="!freeDebt"></am-input>
+                    </div>
+                </div>
+                <div>
+                    <div class="w-100">
+                        <am-textarea class="w-100" label="More Info" [fg]="fg" control="donorInfo" placeholder="More Info" [disabled]="!freeDebt"></am-textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="nextButton">
+        <button mat-raised-button color="primary" matTooltip="Go to next tab" matTooltipPosition="above" [disabled]="!supplierTabValid" (click)="goNextTab()">Next</button>
+    </div>
+</form>

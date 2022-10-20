@@ -1,0 +1,35 @@
+.login {
+    height: 100vh; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;   
+}
+
+.btn-login {
+    width: 100%;
+    margin-top: -1rem;
+    padding: .5rem;
+    border: none;
+    justify-content: center;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 1rem;
+    transition: all .2s;
+
+    &:enabled:hover {
+        cursor: pointer;
+        // background-color: rgb(69, 69, 214);
+        transform: translateY(-2px);
+        box-shadow: 0 .5rem .5rem rgba(0, 0, 0, .2); 
+    }
+    
+    &:enabled:active {
+        transform: translateY(0);
+        box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .2);  
+    }
+
+    &:disabled {
+        background-color: gray;
+        cursor: not-allowed;
+    }
+}

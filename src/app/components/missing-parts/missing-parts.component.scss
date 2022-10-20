@@ -1,0 +1,24 @@
+.missing-part {
+    display: flex;
+    flex-direction: row;
+
+    @media screen and (max-width: 1150px) {
+        flex-direction: column;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    &__row {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+
+        @media screen and (max-width: 680px) {
+            flex-direction: column;
+        }
+    }
+}

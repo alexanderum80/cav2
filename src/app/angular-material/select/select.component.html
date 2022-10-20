@@ -1,0 +1,16 @@
+<mat-form-field class="w-100" [formGroup]="fg">
+    <mat-label *ngIf="label">{{ label }}</mat-label>
+    <mat-select [formControlName]="control" [required]="required" [disabled]="disabled">
+        <input class="filterInput" matInput type="text" autocomplete="off" placeholder="Search..." (keyup)="search($event)">
+        <mat-divider></mat-divider>
+        <mat-option *ngFor="let item of selectionValues" [value]="item.value">{{ item.description }}</mat-option>
+    </mat-select>
+    <div matSuffix class="flex">
+        <div *ngIf="hasControlValue">
+            <button mat-icon-button class="mdi mdi-close" [disabled]="disabled" (click)="onClear($event)"></button>
+        </div>
+        <div *ngIf="hasControlValue && canEdit">
+            <button mat-icon-button class="mdi mdi-pencil" [disabled]="disabled" (click)="onEdit($event)"></button>
+        </div>
+    </div>
+</mat-form-field>

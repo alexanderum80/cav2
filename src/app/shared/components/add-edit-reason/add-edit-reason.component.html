@@ -1,0 +1,7 @@
+<app-modal title="{{ actionName }} Reason" [fg]="fg" [showActions]="true" (saveClicked)="save()">
+    <form action="" [formGroup]="fg" class="actions">
+        <div>
+            <am-input label="Name" [fg]="fg" control="name" [required]="true"></am-input>
+        </div>
+    </form>
+</app-modal>

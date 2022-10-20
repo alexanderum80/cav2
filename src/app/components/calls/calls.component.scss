@@ -1,0 +1,18 @@
+.btn-logout {
+    position: absolute;
+    right: 1rem;
+    top: .5rem;
+    z-index: 9999;
+}
+
+.new-call {
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+}
+
+.mat-card-content {
+    height: 90% !important;
+    overflow: auto;
+    padding: 5px;
+}

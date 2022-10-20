@@ -1,0 +1,125 @@
+<div class="towing-recap">
+    <form role="form" [formGroup]="fg">
+        <div class="towing-recap__container">
+            <div class="towing-recap__left-panel">
+                <div class="date-delayreason section-conf">
+                    <div class="w-100">
+                        <mat-form-field class="w-100">
+                            <mat-label>Pickup date</mat-label>
+                            <input matInput [min]="minDate" [matDatepicker]="picker" readonly formControlName="pickupDate">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker color="primary" [disabled]="isDropOff || !freeDebt"></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="section-conf">
+                    <div class="w-100 pr-2">
+                        <am-select class="w-100" label="Pickup type" [fg]="fg" control="pickupType" [values]="pickupValues" [disabled]="!freeDebt" (searchValue)="filterPickupType($event)"></am-select>
+                    </div>
+                </div>
+                <div class="section-conf">
+                    <div class="w-100 pr-2">
+                        <am-select class="w-100" label="Payment Method" [fg]="fg" control="paymentMethod" [values]="paymentMethodValues" [disabled]="!freeDebt" (searchValue)="filterpaymentMethod($event)"></am-select>
+                    </div>
+                </div>
+                <div class="section-conf">
+                    <div class="w-100 pr-2">
+                        <am-select class="w-100" label="Delay reason" [fg]="fg" control="delayReason" [values]="delayReasonValues" [canEdit]="true" [disabled]="!canEditDelayReason || !freeDebt" (searchValue)="filterReason($event)" (editElement)="editReason($event)"></am-select>
+                    </div>
+                </div>
+                <div class="section-conf">
+                    <div class="w-100 pr-2">
+                        <am-select class="w-100" label="Towing address" [fg]="fg" control="towingAddressOption" [values]="towingAddressOptionValues" [required]="!isDropOff" [disabled]="!freeDebt"></am-select>
+                    </div>
+                </div>
+                <div class="section-conf">
+                    <div class="w-100 pr-2">
+                        <am-textarea class="w-100" label="Address" [fg]="fg" control="towingAddress" placeholder="Number and street" [required]="!isDropOff" [disabled]="!freeDebt"></am-textarea>
+                    </div>
+                </div>
+                <div class="city-province-postalcode section-conf">
+                    <div class="w-100 pr-2">
+                        <am-select class="w-100" label="City" [fg]="fg" control="towingCity" [values]="cityValues" [disabled]="!freeDebt" (searchValue)="filterTowingCity($event)"></am-select>
+                    </div>
+                    <div class="w-100 pr-2">
+                        <am-select class="w-100" label="Province" [fg]="fg" control="towingProvince" [values]="provinceValues" [disabled]="!freeDebt" (searchValue)="filterTowingProvince($event)"></am-select>
+                    </div>
+                    <div class="w-100 pr-2">
+                        <am-input class="w-100" label="Postal Code" [fg]="fg" control="towingPostalCode" mask="AAAAAA" placeholder="Postal Code" [disabled]="!freeDebt"></am-input>
+                    </div>
+                </div>
+                <div class="section-conf">
+                    <div class="w-100 pr-2">
+                        <am-select class="w-100" label="Country" [fg]="fg" control="towingCountry" [values]="countryValues" [disabled]="!freeDebt" (searchValue)="filterTowingCountry($event)"></am-select>
+                    </div>
+                </div>
+                <div class="section-conf">
+                    <div class="w-100 pr-2">
+                        <am-input class="w-100" label="Phone" [fg]="fg" control="towingPhone" mask="(000) 000-0000" [showMask]="true" placeholder="Phome" [disabled]="!freeDebt"></am-input>
+                    </div>
+                    <div class="w-100 pr-2">
+                        <am-input class="w-100" label="Cellulaire" [fg]="fg" control="towingCellulaire" mask="(000) 000-0000" [showMask]="true" placeholder="Phome" [disabled]="!freeDebt"></am-input>
+                    </div>
+                </div>
+            </div>
+            <div class="towing-recap__right-panel">
+                <div class="w-50 pr-2">
+                    <section *ngIf="haveTires" class="section-conf">
+                        <am-select class="w-100" label="Wheels" [fg]="fg" control="wheels" [values]="wheelsValues" [disabled]="!freeDebt" (searchValue)="filterWheels($event)">
+                        </am-select>
+                    </section>
+                    <section *ngIf="haveTires" class="section-conf">
+                        <am-select class="w-100" label="Tires" [fg]="fg" control="tires" [values]="tiresValues" [disabled]="!freeDebt" (searchValue)="filterTires($event)">
+                        </am-select>
+                    </section>
+                    <section class="section-conf">
+                        <am-select class="w-100" label="Brakes" [fg]="fg" control="brakes" [values]="brakesValues" [disabled]="!freeDebt" (searchValue)="filterBrakes($event)">
+                        </am-select>
+                    </section>
+                </div>
+                <div class="w-50">
+                    <section *ngIf="isActionOpportunity" class="section-conf">
+                        <am-checkbox [fg]="fg" control="differentCarLocation" label="Different Car Location" [disabled]="!freeDebt">
+                        </am-checkbox>
+                    </section>
+                    <section *ngIf="differentCarLocation" class="section-conf">
+                        <am-select class="w-100" label="Car location" [fg]="fg" control="carLocation" [values]="locationValues" [disabled]="!freeDebt" (searchValue)="filterLocation($event)">
+                        </am-select>
+                    </section>
+                    <section class="section-conf">
+                        <am-checkbox [fg]="fg" control="burntCar" label="Burnt Car" [disabled]="!freeDebt">
+                        </am-checkbox>
+                    </section>
+                    <section class="section-conf">
+                        <am-checkbox [fg]="fg" control="ownershipTransferDisclaimer" label="Ownership transfer disclaimer" [disabled]="!freeDebt">
+                        </am-checkbox>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="towing-recap__footer">
+            <div>
+                <div>
+                    <am-checkbox [fg]="fg" control="vehicleHybrid" label="Is the vehicle hybrid?" [disabled]="!freeDebt">
+                    </am-checkbox>
+                </div>
+                <div class="w-100 pr-2" *ngIf="vehicleHybrid">
+                    <am-textarea class="w-100" label="Hybrid note" [fg]="fg" control="hybridNote" [rows]="3" placeholder="Hybrid note" [disabled]="!freeDebt"></am-textarea>
+                </div>
+            </div>
+            <div>
+                <div class="flex w-100">
+                    <div class="w-100 pr-2" *ngIf="charityAction">
+                        <am-textarea class="w-100" label="Charity note" [fg]="fg" control="charityNote" [rows]="3" placeholder="Charity note" [disabled]="!freeDebt"></am-textarea>
+                    </div>
+                    <div class="w-100 pr-2" *ngIf="carInImpoundGarage">
+                        <am-textarea class="w-100" label="Towing note" [fg]="fg" control="towingNote" [rows]="3" placeholder="Towing note" [disabled]="!freeDebt"></am-textarea>
+                    </div>
+                </div>
+                <div class="w-100 pr-2" *ngIf="goodForSale">
+                    <am-textarea class="w-100" label="GOOD FOR SALE note" [fg]="fg" control="goodForSaleNote" [rows]="6" placeholder="GOOD FOR SALE note" [readonly]="true"></am-textarea>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

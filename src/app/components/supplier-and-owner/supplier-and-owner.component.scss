@@ -1,0 +1,63 @@
+.supplier-owner {
+    
+    &__container {
+        display: flex;
+        flex-direction: row;
+
+        @media screen and (max-width: 835px) {
+            flex-direction: column !important;
+        }
+    }
+
+    &__left-panel {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding: 10px;
+
+        @media screen and (max-width: 835px) {
+            width: 100% !important;
+        }
+
+        & > div {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+
+    &__right-panel {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        margin-left: 10px;
+
+        & > div {
+            display: flex;
+            flex-direction: row;
+        }
+
+        @media screen and (max-width: 835px) {
+            width: 100% !important;
+        }
+    }
+
+    &__city-info {
+        display: flex;
+        flex-direction: row;
+
+        & > div {
+            display: flex;
+        }
+
+        @media screen and (max-width: 1200px) {
+            flex-direction: column !important;
+        }
+    }
+}
+
+.donor__right-padding {
+
+    @media screen and (min-width: 1200px) {
+        margin-top: 5rem;
+    };
+}

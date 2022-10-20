@@ -1,0 +1,21 @@
+<app-modal title="{{ actionName }} Agent" [fg]="fg" [showActions]="true" (saveClicked)="save()">
+    <form action="" [formGroup]="fg" class="actions">
+        <div>
+            <div>
+                <am-input label="Name" [fg]="fg" control="name" [required]="true"></am-input>
+            </div>
+            <div>
+                <am-input label="Login" [fg]="fg" control="login" [required]="true"></am-input>
+            </div>
+            <div>
+                <am-select label="Language" [fg]="fg" control="language" [values]="languageValues" [required]="true"></am-select>
+            </div>
+            <div>
+                <am-input type="email" label="Email" [fg]="fg" control="email"></am-input>
+            </div>
+            <div>
+                <am-checkbox label="Active" [fg]="fg" control="active"></am-checkbox>
+            </div>
+        </div>
+    </form>
+</app-modal>

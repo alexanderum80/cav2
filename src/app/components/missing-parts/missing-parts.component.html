@@ -1,0 +1,168 @@
+<form role="form" [formGroup]="fg">
+    <div class="missing-part">
+        <div class="missing-part__container">
+            <div class="missing-part__row pt-2">
+                <section class="section-conf">
+                    <am-radio-button
+                        label="Does the vehicle have engine?" 
+                        [fg]="fg" 
+                        control="haveEngine" 
+                        [buttonValues]="yesNoOptions"
+                        [required]="true"
+                        [disabled]="!freeDebt">
+                    </am-radio-button>
+                </section>
+                <section class="section-conf section-margin" *ngIf="!haveEngine && !haveEngineIndeterminate">Please see your supervisor</section>
+                <section class="section-conf section-margin" *ngIf="!haveEngine && !haveEngineIndeterminate">
+                    <am-input class="w-100" label="Deduction" type="tel" [fg]="fg" control="engineDeduction" [readonly]="true" [disabled]="!freeDebt"></am-input>
+                </section>
+            </div>
+            <div class="missing-part__row" *ngIf="haveEngine && goodCar">
+                <section class="section-conf">
+                    <am-radio-button
+                        label="Does the engine run?" 
+                        [fg]="fg" 
+                        control="engineRun" 
+                        [buttonValues]="yesNoOptions"
+                        [required]="true"
+                        [disabled]="!freeDebt">
+                    </am-radio-button>
+                </section>
+            </div>
+            <div class="missing-part__row" *ngIf="engineRun">
+                <section class="section-conf">
+                    <am-radio-button
+                        label="Is the check engine light on?" 
+                        [fg]="fg" 
+                        control="engineLight" 
+                        [buttonValues]="yesNoOptions"
+                        [required]="true"
+                        [disabled]="!freeDebt">
+                    </am-radio-button>
+                </section>
+            </div>
+            <div class="missing-part__row">
+                <section class="section-conf">
+                    <am-radio-button
+                        label="Does the vehicle have transmission?" 
+                        [fg]="fg" 
+                        control="haveTransmission" 
+                        [buttonValues]="yesNoOptions"
+                        [required]="true"
+                        [disabled]="!freeDebt">
+                    </am-radio-button>
+                </section>
+                <section class="section-conf section-margin" *ngIf="!haveTransmission && !haveTransmissionIndeterminate">Please see your supervisor</section>
+                <section class="section-conf section-margin" *ngIf="!haveTransmission && !haveTransmissionIndeterminate">
+                    <am-input class="w-100" label="Deduction" type="tel" [fg]="fg" control="transmissionDeduction" [readonly]="true" [disabled]="!freeDebt"></am-input>
+                </section>
+            </div>
+            <div class="missing-part__row" *ngIf="haveTransmission && goodCar">
+                <section class="section-conf">
+                    <am-radio-button
+                        label="Is the transmission running?" 
+                        [fg]="fg" 
+                        control="transmissionRunning" 
+                        [buttonValues]="yesNoOptions"
+                        [required]="true"
+                        [disabled]="!freeDebt">
+                    </am-radio-button>
+                </section>
+            </div>
+            <div class="missing-part__row">
+                <section class="section-conf">
+                    <am-select label="Rust" [fg]="fg" control="rust" [values]="rustValues" [required]="true" [disabled]="!freeDebt"></am-select>
+                </section>
+            </div>
+        </div>
+
+        <div class="missing-part__container">
+            <div class="missing-part__row pt-2">
+                <section class="section-conf">
+                    <am-radio-button
+                        label="Does the vehicle have battery?" 
+                        [fg]="fg" 
+                        control="haveBattery" 
+                        [buttonValues]="yesNoOptions"
+                        [required]="true"
+                        [disabled]="!freeDebt">
+                    </am-radio-button>
+                </section>
+                <section class="section-conf section-margin" *ngIf="!haveBattery && !haveBatteryIndeterminate">
+                    <am-input class="w-100" label="Deduction" type="tel" [fg]="fg" control="batteryDeduction" [readonly]="true" [disabled]="!freeDebt"></am-input>
+                </section>
+            </div>
+            <div class="missing-part__row">
+                <section class="section-conf">
+                    <am-radio-button
+                        label="Does the vehicle have catalytic convertors?" 
+                        [fg]="fg" 
+                        control="haveCatalyticConvertor" 
+                        [buttonValues]="yesNoOptions"
+                        [required]="true"
+                        [disabled]="!freeDebt">
+                    </am-radio-button>
+                </section>
+                <section class="section-conf" *ngIf="!haveCatalyticConvertor && !haveCatalyticConvertorIndeterminate">
+                    <am-input class="w-100" label="Deduction" type="tel" [fg]="fg" control="catalyticConvertorDeduction" [readonly]="true" [disabled]="!freeDebt"></am-input>
+                </section>
+            </div>
+            <div class="missing-part__row">
+                <section class="section-conf">
+                    <am-radio-button
+                        label="Does the vehicle have tires?" 
+                        [fg]="fg" 
+                        control="haveTires" 
+                        [buttonValues]="yesNoOptions"
+                        [required]="true"
+                        [disabled]="!freeDebt">
+                    </am-radio-button>
+                </section>
+                <section class="section-conf" *ngIf="!haveTires && !haveTiresIndeterminate">
+                    <am-input class="w-100" label="Quantity" type="number" [fg]="fg" control="missingQuantityTires" [disabled]="!freeDebt"></am-input>
+                </section>
+                <section class="section-conf col-sm-4" *ngIf="!haveTires && !haveTiresIndeterminate">
+                    <am-input class="w-100" label="Deduction" [fg]="fg" control="tiresDeduction" [readonly]="true" [disabled]="!freeDebt"></am-input>
+                </section>
+            </div>
+            <div class="missing-part__row" *ngIf="!haveTires && !haveTiresIndeterminate">
+                <section class="section-conf">
+                    <am-radio-button
+                        label="Does the vehicle have rims?" 
+                        [fg]="fg" 
+                        control="haveRims" 
+                        [buttonValues]="yesNoOptions"
+                        [required]="true"
+                        [disabled]="!freeDebt">
+                    </am-radio-button>
+                </section>
+                <section class="section-conf" *ngIf="!haveRims && !haveRimsIndeterminate">
+                    <am-input class="w-100" label="Quantity" type="number" [fg]="fg" control="missingQuantityRims" [disabled]="!freeDebt"></am-input>
+                </section>
+                <section class="section-conf col-sm-4" *ngIf="!haveRims && !haveRimsIndeterminate">
+                    <am-input class="w-100" label="Deduction" [fg]="fg" control="rimsDeduction" [readonly]="true" [disabled]="!freeDebt"></am-input>
+                </section>
+            </div>
+            <div class="missing-part__row">
+                <section class="section-conf">
+                    <am-radio-button
+                        label="Does the vehicle have A/C?" 
+                        [fg]="fg" 
+                        control="haveAC" 
+                        [buttonValues]="yesNoOptions"
+                        [required]="true"
+                        [disabled]="!freeDebt">
+                    </am-radio-button>
+                </section>
+            </div>
+            <div class="missing-part__row">
+                <section class="w-100 section-conf">
+                    <am-textarea class="w-90" label="Mechanical note" [fg]="fg" control="mechanicalNote" [disabled]="!freeDebt"></am-textarea>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="nextButton">
+        <button mat-raised-button color="primary" matTooltip="Go to next tab" matTooltipPosition="above" [disabled]="!missingPartTabValid" (click)="goNextTab()">Next</button>
+    </div>
+</form>

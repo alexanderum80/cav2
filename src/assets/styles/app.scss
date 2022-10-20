@@ -1,0 +1,33 @@
+@import './declarations.scss';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.section-conf {
+    @include section();
+}
+
+.section-left {
+    @include section();
+
+    align-items: flex-end;
+    align-content: flex-end;
+}
+
+.section-margin {
+    margin: 0 10px;
+}
+
+input[readonly]:hover, .disabled {
+    cursor: not-allowed;  
+    background-color: transparent;
+}
+
+.nextButton {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.carousel {
+    z-index: 1000 !important;
+}

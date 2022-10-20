@@ -1,0 +1,166 @@
+.interface-def {
+    position: relative;
+    padding: 1.5rem !important;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__info {
+        display: flex;
+    }
+
+    &__detail {
+        display: flex;
+
+        & > div {
+            width: 50%;
+            margin-right: 1rem;
+        }
+
+        @media screen and (max-width: 1024px) {
+            flex-direction: column !important;
+
+            & > div {
+                width: 100% !important;
+                margin-right: 0 !important;
+            }
+        }
+    }
+
+    &__accidented {
+        display: flex;
+
+        @media screen and (max-width: 600px) {
+            flex-direction: column !important;
+        }
+
+        @media screen and (min-width: 1024px) and (max-width: 1090px) {
+            flex-direction: row !important;
+        }
+    }
+
+    &__ownership-paper {
+        display: flex;
+
+        @media screen and (max-width: 500px) {
+            flex-direction: column !important;
+        }
+    }
+}
+
+.image_upload {
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.disabled {
+        background-color: lightgray;
+        pointer-events: none;
+    }
+}
+
+#image_upload {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+}
+
+.mdi-upload-outline {
+    font-size: 3rem;
+    margin-top: 1rem !important;
+    
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.vehicle-images {
+    display: flex;
+    position: relative;
+    width: 70% !important;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media screen and (max-width: 1024px) {
+        width: 100% !important;        
+    }
+
+    .mdi-delete {
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+        right: 0rem;
+        bottom: 1rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    & .image-expanded {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0 !important;
+        z-index: 990;
+    }
+
+    & .mdi-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 1rem;
+        z-index: 992;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.button-group {
+    padding: .5rem;
+
+    & > button {
+        margin-left: .5rem;
+    }
+}
+
+mat-card-subtitle {
+    position: absolute;
+    top: -15px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.bgm-gray {
+    background-color: lightgray;
+}
+
+.mileage {
+    display: flex;
+
+    & > am-input {
+        width: 60%;
+    }
+
+    & > am-select {
+        padding-left: 5px;
+        width: 40%;
+    }
+}
+
+.loading-vin {
+    width: 85% !important;
+}

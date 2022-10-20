@@ -1,0 +1,10 @@
+.offer-container {
+    display: flex;
+    overflow: hidden;
+
+    flex-direction: row;
+
+    @media screen and (max-width: 600px) {
+        flex-direction: column;
+    }
+}

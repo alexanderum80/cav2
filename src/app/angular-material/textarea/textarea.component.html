@@ -1,0 +1,9 @@
+<mat-form-field [formGroup]="fg" class="w-100">
+    <mat-label *ngIf="label">{{ label }}</mat-label>
+    <textarea matInput 
+        [formControlName]="control" 
+        [rows]="rows" 
+        [required]="required" 
+        [readonly]="readonly"
+        [placeholder]="placeholder"></textarea>
+</mat-form-field>

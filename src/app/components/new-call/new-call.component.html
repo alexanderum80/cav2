@@ -1,0 +1,48 @@
+<form action="" [formGroup]="fg" class="new-call">
+    <div class="new-call__left">
+        <div class="section-conf">
+            <mat-label>Date</mat-label>
+            <p class="pt-2">{{ today | date: 'yyyy/MM/dd HH:mm:ss' }}</p>
+        </div>
+        <div class="section-conf">
+            <am-select label="Action" [fg]="fg" control="action" [values]="actionsValues" (searchValue)="filterAction($event)"></am-select>
+        </div>
+        <div class="section-conf">
+            <mat-label>Responsable</mat-label>
+            <p class="pt-2">{{ responsable }}</p>
+        </div>
+        <div class="section-conf">
+            <mat-label>Notes</mat-label>
+            <mat-form-field class="mt-5">
+                <textarea matInput cols="30" rows="4" formControlName="callNote" placeholder="Call note"></textarea>
+            </mat-form-field>
+        </div>
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+    <div class="new-call__right">
+        <div class="section-conf">
+            <am-select label="Contact" [fg]="fg" control="supplier" [values]="supplierValues" (searchValue)="filterSupplier($event)"></am-select>
+        </div>
+        <div class="section-conf">
+            <mat-label>Contact Email</mat-label>
+            <p class="pt-2">{{ supplier?.email != false ? supplier?.email : '' }} </p>
+        </div>
+        <div class="section-conf">
+            <mat-label>Phone</mat-label>
+            <p class="pt-2">{{ supplier?.phone != false ? supplier?.phone : '' }} </p>
+        </div>
+        <div class="section-conf">
+            <mat-label>Postal Code</mat-label>
+            <p class="pt-2">{{ supplier?.zip != false ? supplier?.zip : '' }} </p>
+        </div>
+        <div class="section-conf">
+            <am-select label="Company" [fg]="fg" control="company" [values]="companyValues" (searchValue)="filterCompany($event)"></am-select>
+        </div>
+    </div>
+
+</form>
+<mat-divider></mat-divider>
+<div class="button-group">
+    <button mat-raised-button color="warn" [disabled]="!isFgValid" (click)="createCall()">Create</button>
+    <button mat-raised-button (click)="abortCall()">Abort</button>
+</div>

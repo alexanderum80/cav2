@@ -1,0 +1,23 @@
+<mat-form-field class="w-100" [formGroup]="fg">
+    <mat-label *ngIf="label">{{ label }}</mat-label>
+    <input matInput 
+        [type]="type" 
+        [formControlName]="control" 
+        [required]="required" 
+        [readonly]="readonly"
+        [placeholder]="placeholder"
+        [autocomplete]="autocomplete"
+        [mask]="mask"
+        [showMaskTyped]="showMask"
+        [suffix]="suffix"
+        [errorStateMatcher]="matcher">
+    <mat-error *ngIf="fg.controls[control]?.hasError('required')">
+        This field is <strong>required</strong>.
+    </mat-error>
+    <mat-error *ngIf="fg.controls[control]?.hasError('email')">
+        Enter a valid email.
+    </mat-error>
+    <!-- <mat-error *ngIf="fg.controls[control]?.hasError('minLength')">
+        Debe introducir más caracteres.
+    </mat-error> -->
+</mat-form-field>

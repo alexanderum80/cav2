@@ -1,0 +1,54 @@
+<app-modal title="{{ actionName }} Supplier" [fg]="fg" [showActions]="true" (saveClicked)="save()">
+    <form action="" [formGroup]="fg" class="actions">
+        <div class="company_container">
+            <div>
+                <div>
+                    <am-input label="Name" [fg]="fg" control="name" [required]="true"></am-input>
+                </div>
+                <div>
+                    <am-select label="Purchase Category" [fg]="fg" control="purchaseCategory" [values]="purchaseCategoryValues" [required]="true"></am-select>
+                </div>
+                <div>
+                    <am-input label="Street" [fg]="fg" control="street"></am-input>
+                </div>
+                <div class="company_container__city-info">
+                    <div>
+                        <am-select label="City" [fg]="fg" control="city" [values]="cityValues"></am-select>
+                    </div>
+                    <div>
+                        <am-select label="Province" [fg]="fg" control="state" [values]="provinceValues"></am-select>
+                    </div>
+                    <div>
+                        <am-input label="Postal Code" [fg]="fg" control="zip"></am-input>
+                    </div>
+                </div>
+                <div>
+                    <am-select label="Country" [fg]="fg" control="country" [values]="countryValues"></am-select>
+                </div>
+                <div>
+                    <am-input type="url" label="Web Site" [fg]="fg" control="website"></am-input>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <am-input label="Job Position" [fg]="fg" control="function"></am-input>
+                </div>
+                <div>
+                    <am-input type="tel" label="Phone" [fg]="fg" control="phone"></am-input>
+                </div>
+                <div>
+                    <am-input type="tel" label="Mobile" [fg]="fg" control="mobile"></am-input>
+                </div>
+                <div>
+                    <am-input type="tel" label="Fax" [fg]="fg" control="fax"></am-input>
+                </div>
+                <div>
+                    <am-input type="email" label="Email" [fg]="fg" control="email"></am-input>
+                </div>
+                <div>
+                    <am-select label="Title" [fg]="fg" control="title" [values]="titleValues"></am-select>
+                </div>
+            </div>
+        </div>
+    </form>
+</app-modal>

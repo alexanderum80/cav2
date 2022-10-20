@@ -1,0 +1,28 @@
+<app-modal title="{{ actionName }} Action" [fg]="fg" [showActions]="true" (saveClicked)="save()">
+    <form action="" [formGroup]="fg" class="actions">
+        <div>
+            <am-input label="Name" [fg]="fg" control="name" [required]="true"></am-input>
+        </div>
+        <div>
+            <am-select label="Program Type" [fg]="fg" control="programType" [values]="programTypeValues"></am-select>
+        </div>
+        <div>
+            <am-checkbox label="Is charity" [fg]="fg" control="isCharity" [disabled]="true"></am-checkbox>
+        </div>
+        <div>
+            <am-select label="Default Contact" [fg]="fg" control="defaultContact" [values]="contactValues"></am-select>
+        </div>
+        <div>
+            <am-checkbox label="Mandatory Note" [fg]="fg" control="mandatoryNote"></am-checkbox>
+        </div>
+        <div>
+            <am-checkbox label="Allow create an opportunity" [fg]="fg" control="allowCreateOpp"></am-checkbox>
+        </div>
+        <div>
+            <am-textarea label="Notes" [fg]="fg" control="notes" [rows]="3"></am-textarea>
+        </div>
+        <div>
+            <am-checkbox label="Active" [fg]="fg" control="active"></am-checkbox>
+        </div>
+    </form>
+</app-modal>

@@ -1,0 +1,259 @@
+<am-spinner *ngIf="loading || saving"></am-spinner>
+
+<div class="interface-def">
+    <form name="editForm" role="form" [formGroup]="fg">
+        <mat-card class="interface-def__container">
+            <div class="row interface-def__info">
+                <div class="form-group col-12 col-sm-2">
+                    <mat-form-field class="w-100">
+                        <mat-label>Vehicle Final Status</mat-label>
+                        <input matInput placeholder="Vehicle Final Status" value="{{ finalStatus }}" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+            <mat-card>
+                <mat-card-subtitle>Vehicle Information</mat-card-subtitle>
+                <div class="row interface-def__info">
+                    <div class="col-12 col-sm-2">
+                        <mat-form-field class="w-100">
+                            <mat-label>Make</mat-label>
+                            <input matInput [class.bgm-gray]="makeDescription" placeholder="Make" value="{{ makeDescription }}" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 col-sm-2">
+                        <mat-form-field class="w-100 ">
+                            <mat-label>Model</mat-label>
+                            <input matInput [class.bgm-gray]="modelDescription" placeholder="Model" value="{{ modelDescription }}" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 col-sm-2">
+                        <mat-form-field class="w-100">
+                            <mat-label>Year</mat-label>
+                            <input matInput [class.bgm-gray]="year" placeholder="Year" value="{{ year }}" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 col-sm-2">
+                        <mat-form-field class="w-100">
+                            <mat-label>Curb Weight</mat-label>
+                            <input matInput [class.bgm-gray]="curbWeight?.curb_weight" placeholder="Curb Weight" value="{{ fg.get('grossWeight')?.value }}" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 col-sm-2">
+                        <mat-form-field class="w-100">
+                            <mat-label>Curb Weight Class</mat-label>
+                            <input matInput [class.bgm-gray]="curbWeight?.curb_weight_class" placeholder="Curb Weight Class" value="{{ curbWeight?.curb_weight_class }}" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="d-flex align-self-center text-white section-margin">
+                        <p class="bg-success p-1" *ngIf="highCata"><strong>HIGH CATA</strong> </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-2">
+                        <mat-form-field class="w-100">
+                            <mat-label>Customer Expectation</mat-label>
+                            <input matInput [class.bgm-gray]="costumerExpectation" placeholder="Customer Expectation" readonly value="{{ costumerExpectation }}">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 col-sm-2">
+                        <mat-form-field class="w-100">
+                            <mat-label>Start Price</mat-label>
+                            <input matInput [class.bgm-gray]="prices?.start_price" placeholder="Start Price" readonly value="{{ prices?.start_price }}">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 col-sm-2">
+                        <mat-form-field class="w-100">
+                            <mat-label>Ideal Price</mat-label>
+                            <input matInput [class.bgm-gray]="prices?.ideal_price" placeholder="Ideal Price" readonly value="{{ prices?.ideal_price }}">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 col-sm-2">
+                        <mat-form-field class="w-100">
+                            <mat-label>Maximum Price</mat-label>
+                            <input matInput [class.bgm-gray]="prices?.max_price" placeholder="Maximun Price" readonly value="{{ prices?.max_price }}">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 col-sm-2">
+                        <mat-form-field class="w-100">
+                            <mat-label>Final Offer</mat-label>
+                            <input matInput [class.bgm-gray]="finalOffer" placeholder="Final Offer" readonly value="{{ finalOffer }}">
+                        </mat-form-field>
+                    </div>
+                    <div class="d-flex align-self-center text-white section-margin">
+                        <p class="bg-success p-1" *ngIf="goodForSale"><strong>GOOD FOR SALE CAR</strong></p>
+                        <p class="bg-danger p-1" *ngIf="!goodForSale"><strong>NOT GOOD FOR SALE</strong></p>
+                    </div>
+                </div>
+            </mat-card>
+            <br>
+            <br>
+            <mat-card>
+                <mat-card-subtitle>Main Information</mat-card-subtitle>
+                <div class="interface-def__detail">
+                    <div class="row">
+                        <div class="column col-sm-4">
+                            <div class="w-100">
+                                <mat-form-field class="w-100" color="accent">
+                                    <mat-label>Date</mat-label>
+                                    <input matInput [matDatepicker]="picker2" readonly formControlName="date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker2 color="primary" [disabled]="!freeDebt"></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="w-100">
+                                <am-select class="w-100" label="1. Action" [fg]="fg" control="action" [values]="actionsValues" [disabled]="!freeDebt"[canEdit]="true" (searchValue)="filterActions($event)" (editElement)="editAction($event)"></am-select>
+                            </div>
+                            <div class="w-100">
+                                <am-input class="w-100" label="2. Vehicle Postal Code" [fg]="fg" control="vehiclePostalCode" mask="AAAAAA" placeholder="Vehicle Postal Code" [required]="true" [disabled]="!freeDebt"></am-input>
+                            </div>
+                            <div class="w-100">
+                                <am-select class="w-100" label="3. Company" [fg]="fg" control="company" [values]="companyValues" [disabled]="!freeDebt"[canEdit]="true" (searchValue)="filterCompany($event)" (editElement)="editCompany($event)"></am-select>
+                            </div>
+                            <div class="w-100">
+                                <am-input class="w-100" label="4. Phone" type="tel" [fg]="fg" control="phone" mask="(000) 000-0000" [showMask]="true" [disabled]="!freeDebt"></am-input>
+                            </div>
+                        </div>
+                        <div class="column col-sm-4">
+                            <div class="w-100">
+                                <am-input class="w-100" label="Draft Agent" [fg]="fg" control="draftAgent" [readonly]="true" [disabled]="!freeDebt"></am-input>
+                            </div>
+                            <div class="w-100">
+                                <am-input class="w-100" label="5. Contact Name" [fg]="fg" control="contactName" [required]="true" [disabled]="!freeDebt"></am-input>
+                            </div>
+                            <div class="flex w-100">
+                                <am-input class="w-100" [class.loading-vin]="loadingVin" label="6. VIN" [fg]="fg" control="vin" [disabled]="!freeDebt"></am-input>
+                                <mat-spinner *ngIf="loadingVin" class="mt-3 ml-1" diameter="20"></mat-spinner>
+                            </div>
+                            <div class="w-100">
+                                <am-select label="Checksum" [fg]="fg" control="checksum" [values]="checksumValues" [disabled]="!freeDebt"></am-select>
+                            </div>
+                            <div class="w-100">
+                                <am-select class="w-100" label="7. Make" [fg]="fg" control="make" [values]="makeValues" [disabled]="!freeDebt"(searchValue)="filterMake($event)"></am-select>
+                            </div>
+                            <div class="w-100">
+                                <am-select class="w-100" label="8. Model" [fg]="fg" control="model" [values]="modelValues" [disabled]="!freeDebt"(searchValue)="filterModel($event)"></am-select>
+                            </div>
+
+                            <!-- <div class="w-100">
+                                <mat-form-field class="w-100">
+                                    <mat-label>Mobile</mat-label>
+                                    <input matInput formControlName="mobile" placeholder="Mobile">
+                                    <mat-icon matSuffix [inline]="true">phone_android</mat-icon>
+                                </mat-form-field>
+                            </div> -->
+                        </div>
+                        <div class="column col-sm-4">
+                            <div class="w-100">
+                                <am-input class="w-100" label="Won Agent" [fg]="fg" control="wonAgent" [readonly]="true" [disabled]="!freeDebt"></am-input>
+                            </div>
+                            <div class="w-100">
+                                <am-input class="w-100" label="9. Year" [fg]="fg" control="year" [required]="true" [disabled]="!freeDebt"></am-input>
+                            </div>
+                            <div class="mileage">
+                                <am-input label="10. Mileage" [fg]="fg" control="mileage" mask="999" suffix=",000" [required]="true" [disabled]="!freeDebt"></am-input>
+                                <am-select matSuffix [fg]="fg" control="unit" [values]="distanceUnitValues" [required]="true" [disabled]="!freeDebt"></am-select>
+                            </div>
+                            <div class="w-100">
+                                <am-checkbox [fg]="fg" [labelPosition]="labelPosition" control="freeDebt" label="11. Free of Debt?">
+                                </am-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="w-100">
+                            <label class="image_upload" for="image_upload" [class.disabled]="allImageLoaded">Upload Vehicle Picture</label>
+                            <input #file id="image_upload" type="file" accept="image/*" multiple [disabled]="!freeDebt"(change)="importImage(file)" (click)="file.value = ''">
+                            <mat-card class="vehicle-images">
+                                <carousel cellWidth="100%">
+                                    <div class="carousel-cell">
+                                        <img [src]="vehicleImage1URL" alt="">
+                                        <div *ngIf="vehicleImage1URL" class="mdi mdi-delete" (click)="deleteImage(1)"></div>
+                                    </div>
+                                    <div class="carousel-cell">
+                                        <img [src]="vehicleImage2URL" alt="">
+                                        <div *ngIf="vehicleImage2URL" class="mdi mdi-delete" (click)="deleteImage(2)"></div>
+                                    </div>
+                                    <div class="carousel-cell">
+                                        <img [src]="vehicleImage3URL" alt="">
+                                        <div *ngIf="vehicleImage3URL" class="mdi mdi-delete" (click)="deleteImage(3)"></div>
+                                    </div>
+                                    <div class="carousel-cell">
+                                        <img [src]="vehicleImage4URL" alt="">
+                                        <div *ngIf="vehicleImage4URL" class="mdi mdi-delete" (click)="deleteImage(4)"></div>
+                                    </div>
+                                    <div class="carousel-cell">
+                                        <img [src]="vehicleImage5URL" alt="">
+                                        <div *ngIf="vehicleImage5URL" class="mdi mdi-delete" (click)="deleteImage(5)"></div>
+                                    </div>
+                                </carousel>
+                                <div *ngIf="imageExpanded !== 0" class="mdi mdi-close" matTooltip="Click to contract image" (click)="switchExpandImage()"></div>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div *ngIf="goodCar" class="row">
+                    <section class="section-conf col-sm-4">
+                        <am-checkbox [fg]="fg" [labelPosition]="labelPosition" control="carBody" label="12. Car Body?" [disabled]="!freeDebt">
+                        </am-checkbox>
+                    </section>
+                </div>
+                <div *ngIf="goodCar" class="row">
+                    <section class="section-conf pl-1">
+                        <am-checkbox class="section-margin" [fg]="fg" [labelPosition]="labelPosition" control="vehicleAccidented" [disabled]="carBody || !freeDebt" label="13. Is the Vehicle Accidented?">
+                        </am-checkbox>
+                    </section>
+                    <div class="section-conf" *ngIf="isAccidented">
+                        <am-checkbox class="section-margin" [fg]="fg" [labelPosition]="labelPosition" control="front" label="Front" [disabled]="!freeDebt">
+                        </am-checkbox>
+                        <am-checkbox class="section-margin" [fg]="fg" [labelPosition]="labelPosition" control="left" label="Left" [disabled]="!freeDebt">
+                        </am-checkbox>
+                        <am-checkbox class="section-margin" [fg]="fg" [labelPosition]="labelPosition" control="right" label="Right" [disabled]="!freeDebt">
+                        </am-checkbox>
+                        <am-checkbox class="section-margin" [fg]="fg" [labelPosition]="labelPosition" control="back" label="Back" [disabled]="!freeDebt">
+                        </am-checkbox>
+                    </div>
+                </div>
+                <div *ngIf="goodCar" class="row">
+                    <section class="section-conf pl-1">
+                        <am-checkbox class="section-margin" [fg]="fg" [labelPosition]="labelPosition" control="haveKeys" [disabled]="carBody || !freeDebt" label="14. Do you have the keys of the vehicle?">
+                        </am-checkbox>
+                    </section>
+                </div>
+                <div *ngIf="goodCar" class="row">
+                    <section class="section-conf pl-1 wrap">
+                        <am-checkbox class="section-margin" [fg]="fg" [labelPosition]="labelPosition" control="haveOwnershipPaper" [disabled]="!freeDebt"label="15. Do you have ownership paper?">
+                        </am-checkbox>
+                        <am-checkbox class="section-margin" *ngIf="!havePapers" [fg]="fg" [labelPosition]="labelPosition" control="powerAttorney" label="Power of attorney?" [disabled]="!freeDebt">
+                        </am-checkbox>
+                    </section>
+                </div>
+            </mat-card>
+            <br>
+            <mat-tab-group mat-align-tabs="start" [selectedIndex]="getSelectedIndex()" (selectedTabChange)="onTabChange($event)">
+                <mat-tab label="Missing Parts">
+                    <app-missing-parts></app-missing-parts>
+                </mat-tab>
+                <mat-tab label="Offer" [disabled]="!missingPartTabValid">
+                    <app-offer></app-offer>
+                </mat-tab>
+                <mat-tab label="Vehicle Secondary Info" [disabled]="!missingPartTabValid || !offerTabValid">
+                    <app-vehicle-secondary-info></app-vehicle-secondary-info>
+                </mat-tab>
+                <mat-tab label="Supplier and Owner" [disabled]="!missingPartTabValid || !offerTabValid || !secondaryInfoTabValid">
+                    <app-supplier-and-owner></app-supplier-and-owner>
+                </mat-tab>
+                <mat-tab label="Towing and Recap" [disabled]="!missingPartTabValid || !offerTabValid || !secondaryInfoTabValid || !supplierTabValid">
+                    <app-towing-and-recap></app-towing-and-recap>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card>
+    </form>
+</div>
+
+<mat-divider></mat-divider>
+<div class="button-group">
+    <button mat-raised-button (click)="lostCall()">Lost</button>
+    <button mat-raised-button color="warn" [disabled]="!isFormValid" (click)="finishCall()">Finish</button>
+    <button mat-raised-button (click)="cancelCall()">Cancel</button>
+</div>

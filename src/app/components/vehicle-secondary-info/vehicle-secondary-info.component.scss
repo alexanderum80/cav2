@@ -1,0 +1,18 @@
+.vehicle-info {
+    padding: 1.5rem !important;
+    
+    &__container {
+        display: flex;
+        flex-direction: row;
+
+        @media screen and (max-width: 576px) {
+            flex-direction: column;
+        }
+    }
+
+    &__left-panel, &__right-panel {
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+    }
+}

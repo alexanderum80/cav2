@@ -1,0 +1,73 @@
+.towing-recap {
+    padding: 1.5rem !important;
+    
+    &__container {
+        display: flex;
+        flex-direction: row;
+
+        @media screen and (max-width: 1100px) {
+            flex-direction: column;
+        }
+    }
+
+    &__left-panel {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .date-delayreason {
+
+        & > div {
+            padding-right: .5rem;
+        }
+
+        @media screen and (max-width: 550px) {
+            display: contents;
+
+            & > div {
+                padding-right: 0 !important;
+            }
+        }
+    }
+
+    .city-province-postalcode {
+        @media screen and (max-width: 720px) {
+            flex-direction: column;
+        }
+    }
+
+    &__right-panel {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        padding: 10px;
+
+        @media screen and (max-width: 500px) {
+            flex-direction: column;
+        }
+    }
+
+    &__footer {
+        display: flex;
+        padding: 10px;
+
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        & > div {
+            flex: 1;
+
+            &:not(:last-child) {
+                margin-right: 10px;
+            }
+
+            @media screen and (max-width: 768px) {
+                margin-right: 0 !important;
+            }
+        }
+    }
+}

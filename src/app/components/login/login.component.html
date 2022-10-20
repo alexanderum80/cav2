@@ -1,0 +1,21 @@
+<div class="login">
+  <mat-card>
+    <form [formGroup]="fg">
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>User</mat-label> 
+          <input type="text" formControlName="user" matInput placeholder="User">
+        </mat-form-field>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label> 
+            <input formControlName="password" type="password" matInput placeholder="Password">
+          </mat-form-field>
+        </div>
+        <div>
+          <button class="w-100" mat-raised-button color="primary" type="submit" [disabled]="!isFormValid() || loading" (click)="login()">Login</button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>

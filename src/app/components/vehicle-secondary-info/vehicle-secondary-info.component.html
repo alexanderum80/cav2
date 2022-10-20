@@ -1,0 +1,48 @@
+<div class="vehicle-info">
+    <form role="form" [formGroup]="fg">
+        <div class="vehicle-info__container">
+            <div class="vehicle-info__left-panel">
+                <div>
+                    <am-select class="w-100" label="Color" [fg]="fg" control="color" [required]="true" [values]="colorValues"  [disabled]="!freeDebt"(searchValue)="filterColor($event)"></am-select>
+                </div>
+                <div>
+                    <am-select class="w-100" label="Transmission" [fg]="fg" control="transmission" [required]="true" [values]="transmissionValues" [disabled]="!freeDebt"></am-select>
+                </div>
+                <div>
+                    <am-select class="w-100" label="Style" [fg]="fg" control="style" [values]="styleValues" (searchValue)="filterStyle($event)" [disabled]="!freeDebt"></am-select>
+                </div>
+                <div>
+                    <am-select class="w-100" label="Driveline" [fg]="fg" control="driveline" [required]="true" [values]="drivelineValues" [disabled]="!freeDebt" (searchValue)="filterDriveline($event)"></am-select>
+                </div>
+                <div>
+                    <div>
+                        <am-select class="w-100" label="Engine type" [fg]="fg" control="engineType" [values]="engineTypeValues" [disabled]="!freeDebt" (searchValue)="filterEngineType($event)"></am-select>
+                    </div>
+                </div>
+            </div>
+            <div class="vehicle-info__right-panel">
+                <div>
+                    <am-input class="w-100" label="Engine size" [fg]="fg" control="engineSize" [disabled]="!freeDebt"></am-input>
+                </div>
+                <div>
+                    <am-input class="w-100" label="Body type" [fg]="fg" control="bodyType" [disabled]="!freeDebt"></am-input>
+                </div>
+                <div>
+                    <am-input class="w-100" label="License plate #" [fg]="fg" control="license" [disabled]="!freeDebt"></am-input>
+                </div>
+                <div>
+                    <am-input class="w-100" label="Certificate #" [fg]="fg" control="certificate" [disabled]="!freeDebt"></am-input>
+                </div>
+                <div class="flex">
+                    <am-input class="w-100 mr-2" type="number" label="Curb Weight" [fg]="fg" control="grossWeight" [required]="true" [disabled]="!freeDebt"></am-input>
+                    <div>
+                        <am-select class="w-100" [fg]="fg" control="uom" [required]="true" [values]="uomValues" [disabled]="!freeDebt" (searchValue)="filterUom($event)"></am-select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nextButton">
+            <button mat-raised-button color="primary" matTooltip="Go to next tab" matTooltipPosition="above" [disabled]="!secondaryInfoTabValid" (click)="goNextTab()">Next</button>
+        </div>
+    </form>
+</div>

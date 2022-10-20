@@ -1,0 +1,82 @@
+<form role="form" [formGroup]="fg">
+    <div class="offer-container">
+        <div class="column flex-1">
+            <section class="section-conf mt-1">
+                <am-checkbox
+                    label="Drop off?"
+                    [fg]="fg"
+                    control="dropOff"
+                    [disabled]="!freeDebt">
+                </am-checkbox>
+            </section>
+            <section class="section-conf mr-5">
+                <am-input class="w-100" 
+                    label="Total missing parts deduction" 
+                    [fg]="fg" 
+                    control="missingPartsDeduction" 
+                    [readonly]="true">
+                </am-input>
+            </section>
+            <section class="section-conf mr-5">
+                <am-input class="w-100" 
+                    label="Total distance fee deduction" 
+                    [fg]="fg" 
+                    control="distanceFreeDeduction" 
+                    [readonly]="true">
+                </am-input>
+            </section>
+            <section class="section-conf mr-5">
+                <am-input class="w-100" 
+                    label="Customer expectation" 
+                    [fg]="fg" 
+                    control="costumerExpectation" 
+                    [required]="true"
+                    [disabled]="!freeDebt">
+                </am-input>
+            </section>
+            <section class="section-conf mr-5">
+                <am-input class="w-100" 
+                    label="Agent offer" 
+                    type="number"
+                    [fg]="fg" 
+                    control="agentOffer" 
+                    [required]="true"
+                    [disabled]="!freeDebt">
+                </am-input>
+            </section>
+        </div>
+
+        <div class="column flex-1">
+            <section class="section-conf mt-1">
+                <am-checkbox
+                    label="Offer accepted?"
+                    [fg]="fg"
+                    control="offerAccepted"
+                    [disabled]="!freeDebt">
+                </am-checkbox>
+            </section>
+            <section class="section-conf mr-5">
+                <am-input class="w-100" type="number" label="Second line offer" [fg]="fg" control="secondOffer" placeholder="Second line offer" [disabled]="offerAccepted"></am-input>
+            </section>
+            <section class="section-conf mr-5">
+                <am-select class="w-100" label="Second line agent" [fg]="fg" control="secondAgent" [values]="agentValues" [canEdit]="true" [disabled]="offerAccepted" (searchValue)="filterAgent($event)" (editElement)="editAgent($event)"></am-select>
+            </section>
+            <section class="section-conf mr-5">
+                <am-select class="w-100" label="Refusal reason" [fg]="fg" control="refusalReason" [values]="refusalReasonValues" [canEdit]="true" [disabled]="offerAccepted" (searchValue)="filterReason($event)" (editElement)="editReason($event)"></am-select>
+            </section>
+            <section class="section-conf mr-5">
+                <mat-form-field class="w-100">
+                    <mat-label>Offer difference</mat-label>
+                    <input matInput type="text" 
+                        formControlName="offerDifference" 
+                        placeholder="Offer difference" 
+                        [value]="offerDifference"
+                        readonly>
+                </mat-form-field>
+            </section>
+        </div>
+    </div>
+    <div class="nextButton">
+        <button mat-raised-button color="primary" matTooltip="Go to next tab" matTooltipPosition="above" [disabled]="!offerTabValid" (click)="goNextTab()">Next</button>
+    </div>
+</form>
